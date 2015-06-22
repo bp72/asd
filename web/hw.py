@@ -14,8 +14,8 @@ from common.storage import IndexFileStorage
 ALLOWED_EXTENSIONS = ['bin', 'txt', 'odt', 'pdf']
 
 app = Flask(__name__)
+IndexFileStorage.root = STORAGEPATH
 ifs = IndexFileStorage()
-ifs.root = STORAGEPATH
 app.config['UPLOAD_FOLDER'] = STORAGEPATH
 
 
