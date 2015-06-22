@@ -144,6 +144,10 @@ class BaseStorage(object):
     def file_exists(self, user, md5, alias):
         return True if filter(lambda item: item.md5sum == md5 and item.filename == alias, self.list(user)) else False
 
+    @property
+    def index_file(self):
+        return '{}/{}'.format(self.root, self.index_filename)
+
 # end of class BaseStorage(object)
 ################################################################################
 
@@ -188,7 +192,6 @@ class IndexFileStorage(BaseStorage):
     """
     root = '/home/bp/work/cloud/storage'
     index_filename = '.index'
-    index_file = '{}/{}'.format(root, index_filename)
     maxfile = 100
 
 
