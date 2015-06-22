@@ -12,6 +12,8 @@ class User(object):
         self.alias = alias
 
 
+STORAGEPATH = '.'
+
 BASICAUTH = {
     'bp': User('bp', '123qwe', u'Павлик'),
     'masha': User('masha', 'stillsingleat33', u'Мари'),

@@ -7,7 +7,7 @@ __version__ = (0, 0, 1)
 import os
 from flask import Flask, render_template, request, redirect, url_for
 
-from settings import BASICAUTH
+from settings import BASICAUTH, STORAGEPATH
 from utils import requires_auth
 from common.storage import IndexFileStorage
 
@@ -15,7 +15,9 @@ ALLOWED_EXTENSIONS = ['bin', 'txt', 'odt', 'pdf']
 
 app = Flask(__name__)
 ifs = IndexFileStorage()
-app.config['UPLOAD_FOLDER'] = ifs.root
+ifs.root = STORAGEPATH
+app.config['UPLOAD_FOLDER'] = STORAGEPATH
+
 
 @app.route('/')
 @requires_auth
@@ -48,6 +50,7 @@ def upload_file():
             return redirect('/')
             return redirect(url_for('show_file', filename=filename))
     return render_template('upload.html')
+
 
 @app.route('/<filename>/del')
 @requires_auth
